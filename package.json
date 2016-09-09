@@ -19,6 +19,7 @@
   "homepage": "https://github.com/mkishine/vsm2#readme",
   "devDependencies": {
     "gulp": "^3.9.1",
+    "gulp-debug": "^2.1.2",
     "gulp-jasmine": "^2.4.1",
     "gulp-load-plugins": "^1.2.4",
     "jasmine": "^2.5.0",
