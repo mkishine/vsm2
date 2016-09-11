@@ -3,7 +3,7 @@ describe('DataLoader.loadData is a function', function(){
     var dataLoader, rawData;
     beforeAll(function() {
         dataLoader = require('./DataLoader');
-        rawData = require('../gen_stat_dump.BEN.20160831T0900-20160831T1000.json').slice(0,2);
+        rawData = require('../gen_stat_dump.BEN.20160831T0900-20160831T1000.json');
     });
     describe('that starts with input input validation.', function(){
         describe('It makes sure that input', function(){
@@ -25,9 +25,16 @@ describe('DataLoader.loadData is a function', function(){
             });
         });
     });
-    fit('does something', function(){
-        var loadedData = dataLoader.loadData(rawData);
+    it('builds a vector of GenStatRecords', function(){
+        var rawDataSlice = rawData.slice(0,2);
+        var loadedData = dataLoader.loadData(rawDataSlice);
         expect(Array.isArray(loadedData)).toBe(true);
+        expect(loadedData.length).toBe(1);
+    });
+    it('ignores exception thrown by GenStatRecord constructor', function(){
+        var rawDataSlice = rawData.slice(0,2);
+        rawDataSlice.push([]);
+        var loadedData = dataLoader.loadData(rawDataSlice);
         expect(loadedData.length).toBe(1);
     });
 });
