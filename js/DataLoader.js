@@ -46,9 +46,14 @@ module.exports.loadData = function(rawData) {
         var reqTime = rawRecord[reqTimeIndex];
         var pid = rawRecord[pidIndex];
         var reqNo = rawRecord[reqNoIndex];
-        var gsr = new GenStatRecord(client, appServer, reportType, asofDate,
-            report, port, user, host, flags, reqTime, pid, reqNo);
-        records.push(gsr);
+        try {
+            var gsr = new GenStatRecord(client, appServer, reportType, asofDate,
+                report, port, user, host, flags, reqTime, pid, reqNo);
+            records.push(gsr);
+        } catch (e) {
+            // do nothing
+        }
+
     }
     return records;
 };
